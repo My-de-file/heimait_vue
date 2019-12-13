@@ -1,9 +1,14 @@
 <template>
-  <div id="btn"><slot></slot></div>
+  <div id="btn" @click="onc"><slot></slot></div>
 </template>
 
 <script>
 export default {
+    methods: {
+        onc(){
+            this.$emit('click',event)
+        }
+    }
 }
 </script>
 

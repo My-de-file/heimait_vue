@@ -8,14 +8,14 @@
         <span class="iconfont iconnew"></span>
       </div>
       <div class="inputs">
-        <myinput type='text' placeholder='请输入用户名'></myinput>
-        <myinput type='password' placeholder='123'></myinput>
+        <myinput type='text' placeholder='请输入用户名' v-model="user.name" @input="inp"></myinput>
+        <myinput type='password' placeholder='123' v-model="user.pwd"></myinput>
       </div>
       <p class="tips">
         没有账号？
         <a href="#/register" class>去注册</a>
       </p>
-      <mybutton>登陆按钮</mybutton>
+      <mybutton @click="onc">登陆按钮</mybutton>
     </div>
   </div>
 </template>
@@ -31,8 +31,18 @@ export default {
   data () {
     return {
       user:{
-        name:''
+        name:'',
+        pwd:''
       }
+    }
+  },
+  methods: {
+    onc(data){
+      window.console.log(data);
+    },
+    inp(){
+      window.console.log(this.user.name);
+      
     }
   }
 };

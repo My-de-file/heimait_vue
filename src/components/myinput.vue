@@ -1,13 +1,24 @@
 <template>
-  <input :type="text" class="inp" :placeholder="placeholder" :class="{red:!color , green:color}">
+  <input :type="text" class="inp"
+   :placeholder="placeholder" 
+   :class="{red:!color , green:color}"
+   :value='value'
+   @input="Tex">
 </template>
 
 <script>
 export default {
-props:['text','placeholder'],
+props:['text','placeholder','zhen','value'],
 data () {
     return {
         color:false
+    }
+},
+methods: {
+    Tex(event){
+        window.console.log(event.target.value);
+        let value = event.target.value
+        this.$emit('input',value)
     }
 }
 }
