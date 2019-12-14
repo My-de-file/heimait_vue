@@ -45,9 +45,9 @@ export default {
         // window.console.log(res)
         if(res.data.message === '登录成功'){
           // 登录成功实现路由跳转
-          this.$router.push({name:'Personal'})
+          this.$router.push({path : `/personal/${res.data.data.user.id}`})
           // 将登录成功的token值存到浏览器的本地存储里面
-          localStorage.setItem('token',res.data.token)
+          localStorage.setItem('token',res.data.data.token)
         } else {
           this.$toast.fail('登录失败请重试')
         }
