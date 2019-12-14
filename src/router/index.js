@@ -7,6 +7,8 @@ import VueRouter from 'vue-router'
 // 注入路由
 import Login from '@/views/Login.vue'
 
+import Personal from '@/views/Personal.vue'
+
 // 将路由模块挂载到vue实列里面
 Vue.use(VueRouter)
 
@@ -17,6 +19,11 @@ var router = new VueRouter({
             name:'Login',
             path:'/login',
             component:Login
+        },
+        {
+            name:'Personal',
+            path:'/personal',
+            component:Personal
         }
     ]
 })

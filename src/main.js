@@ -4,6 +4,10 @@ import App from './App.vue'
 // 引用路由
 import router from '@/router/index.js'
 
+import { Toast } from 'vant';
+
+Vue.use(Toast)
+
 // 引进css样式
 import '@/styles/reset.css'
 

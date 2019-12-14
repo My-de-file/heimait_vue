@@ -8,8 +8,8 @@
         <span class="iconfont iconnew"></span>
       </div>
       <div class="inputs">
-        <myinput type='text' placeholder='请输入用户名' v-model="user.name" @input="inp"></myinput>
-        <myinput type='password' placeholder='123' v-model="user.pwd"></myinput>
+        <myinput type='text' placeholder='请输入用户名' v-model="user.username" @input="inp" :zhen='/^1\d{10}$/' tex = '请输入11位手机号'></myinput>
+        <myinput type='password' v-model="user.password"></myinput>
       </div>
       <p class="tips">
         没有账号？
@@ -24,6 +24,7 @@
 // 引入按钮路由
 import mybutton from "@/components/mybutton.vue"
 import myinput from "@/components/myinput.vue"
+import {userLogin} from '@/api/users.js'
 export default {
   components: {
     mybutton,myinput
@@ -31,14 +32,29 @@ export default {
   data () {
     return {
       user:{
-        name:'',
-        pwd:''
+        username:'',
+        password:'123'
       }
     }
   },
   methods: {
-    onc(data){
-      window.console.log(data);
+    onc(){
+      window.console.log(this.user.password)
+      userLogin(this.user)
+      .then(res=>{
+        // window.console.log(res)
+        if(res.data.message === '登录成功'){
+          // 登录成功实现路由跳转
+          this.$router.push({name:'Personal'})
+          // 将登录成功的token值存到浏览器的本地存储里面
+          localStorage.setItem('token',res.data.token)
+        } else {
+          this.$toast.fail('登录失败请重试')
+        }
+      })
+      .catch(err=>{
+        window.console.log(err)
+      })
     },
     inp(){
       window.console.log(this.user.name);
