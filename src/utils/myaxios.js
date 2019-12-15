@@ -6,6 +6,7 @@ axios.defaults.baseURL = 'http://127.0.0.1:3000'
 // 存储服务器基地址  用于加载服务器的图片
 localStorage.setItem('hema_img',axios.defaults.baseURL)
 
+
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // window.console.log(config)
