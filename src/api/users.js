@@ -12,3 +12,10 @@ export const userPersonal = (id)=>{
         url:`/user/${id}`,
     })
 }
+export const userupdate = (id,data)=>{
+    return axios ({
+        method:'post',
+        url:`/user_update/${id}`,
+        data
+    })
+}

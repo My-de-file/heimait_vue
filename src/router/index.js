@@ -9,6 +9,9 @@ import Login from '@/views/Login.vue'
 
 import Personal from '@/views/Personal.vue'
 
+import edit_profile from '@/views/edit_profile.vue'
+
+
 // 将路由模块挂载到vue实列里面
 Vue.use(VueRouter)
 
@@ -24,6 +27,11 @@ var router = new VueRouter({
             name:'Personal',
             path:'/personal/:id',
             component:Personal
+        },
+        {
+            name:'edit_profile',
+            path:'/edit_profile/:id',
+            component:edit_profile
         }
     ]
 })

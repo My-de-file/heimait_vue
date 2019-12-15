@@ -3,6 +3,9 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
 
+// 存储服务器基地址  用于加载服务器的图片
+localStorage.setItem('hema_img',axios.defaults.baseURL)
+
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // window.console.log(config)
@@ -22,7 +25,7 @@ axios.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
-  window.console.log(response)
+  // window.console.log(response)
   if(response.data.message === "用户信息验证失败" || response.data.message === "用户信息验证失败!"){
     window.location.href = '#/login'
   }
