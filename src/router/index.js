@@ -11,6 +11,10 @@ import Personal from '@/views/Personal.vue'
 
 import edit_profile from '@/views/edit_profile.vue'
 
+import Register from '@/views/Register.vue'
+
+import index from '@/views/index.vue'
+
 
 // 将路由模块挂载到vue实列里面
 Vue.use(VueRouter)
@@ -32,6 +36,16 @@ var router = new VueRouter({
             name:'edit_profile',
             path:'/edit_profile/:id',
             component:edit_profile
+        },
+        {
+            name:'Register',
+            path:'/register',
+            component:Register
+        },
+        {
+            name:'index',
+            path:'/',
+            component:index
         }
     ]
 })

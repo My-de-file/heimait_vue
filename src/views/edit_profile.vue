@@ -155,7 +155,7 @@ export default {
           this.$toast.fail("修改密码请求失败");
         }
       } else {
-        1;
+        this.$toast.fail("修改密码请求失败");
       }
     },
 

@@ -8,8 +8,8 @@
         <span class="iconfont iconnew"></span>
       </div>
       <div class="inputs">
-        <myinput type='text' placeholder='请输入用户名' v-model="user.username" @input="inp" :zhen='/^1\d{10}$/' tex = '请输入11位手机号'></myinput>
-        <myinput type='password' v-model="user.password"></myinput>
+        <myinput text='text' placeholder='请输入用户名' v-model="user.username" @input="inp" :zhen='/^1\d{10}$/' tex = '请输入11位手机号'></myinput>
+        <myinput text='password' v-model="user.password"></myinput>
       </div>
       <p class="tips">
         没有账号？

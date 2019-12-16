@@ -19,3 +19,10 @@ export const userupdate = (id,data)=>{
         data
     })
 }
+export const useradd = (data)=>{
+    return axios ({
+        method :'post',
+        url:'/register',
+        data
+    })
+}
