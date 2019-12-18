@@ -15,6 +15,9 @@ import Register from '@/views/Register.vue'
 
 import index from '@/views/index.vue'
 
+import Details from '@/views/Details.vue'
+// export const Details = ()
+
 
 // 将路由模块挂载到vue实列里面
 Vue.use(VueRouter)
@@ -46,6 +49,11 @@ var router = new VueRouter({
             name:'index',
             path:'/',
             component:index
+        },
+        {
+            name:'Details',
+            path:'/details/:id',
+            component:Details
         }
     ]
 })

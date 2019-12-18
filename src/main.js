@@ -12,6 +12,23 @@ import { Dialog } from 'vant';
 import { Field } from 'vant';
 import { Picker } from 'vant';
 
+import { Icon } from 'vant';
+import { Tab } from 'vant';
+
+import { Tabs } from 'vant';
+import { List } from 'vant';
+import { PullRefresh } from 'vant';
+
+Vue.use(PullRefresh);
+
+Vue.use(List);
+
+Vue.use(Tab)
+
+Vue.use(Tabs);
+
+Vue.use(Icon);
+
 Vue.use(Toast)
 
 Vue.use(Uploader);
