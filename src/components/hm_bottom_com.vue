@@ -22,6 +22,7 @@
 
 <script>
 import {collect1} from '@/api/article.js'
+import {comment} from '@/api/article.js'
 export default {
     props:['transmission'],
   data () {
@@ -44,8 +45,9 @@ export default {
      this.$toast.success(res.data.message)
      this.transmission.has_star = !this.transmission.has_star
     },
-      from(){
-          window.console.log(this.fromdata)
+    async from(){
+        let res = await comment(this.transmission.id,{content:this.fromdata})
+        window.console.log(res)
       }
   }
 }

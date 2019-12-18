@@ -44,3 +44,8 @@ export const collect1 = (id)=>{
         url:`/post_star/${id}`
     })
 }
+export const comment = (id)=>{
+    return axios ({
+        url:`/post_comment/${id}`
+    })
+}

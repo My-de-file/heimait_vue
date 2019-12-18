@@ -28,16 +28,17 @@
     <!-- 精彩跟帖 -->
     <div class="keeps">
       <h2>精彩跟帖</h2>
-      <div class="item">
+      <div class="item" v-for="(item, index) in comment1" :key="index">
         <div class="head">
-          <img src="../assets/logo.png" alt />
+          <img :src='item.user.head_img?item.user.head_img:imgs' alt />
+          <!--   ../assets/logo.png-->
           <div>
-            <p>火星网友</p>
+            <p>{{item.user.nickname}}</p>
             <span>2小时前</span>
           </div>
           <span>回复</span>
         </div>
-        <div class="text">文章说得很有道理</div>
+        <div class="text">{{item.content}}</div>
       </div>
       <div class="more">更多跟帖</div>
     </div>
@@ -51,22 +52,45 @@ import {attention1} from '@/api/article.js'
 import {Unfriended} from '@/api/article.js'
 import {Like} from '@/api/article.js'
 import bottoncom from '@/components/hm_bottom_com.vue'
+import {comment} from '@/api/article.js'
 export default {
     data () {
         return {
-            mydata:{}
+            mydata:{},
+            comment1:{},
+            imgs:'/img/logo.82b9c7a5.png',
         }
     },
     components: {
       bottoncom
     },
   async mounted () {
+    // if(localStorage.getItem('hema_img')){
+    //   this.imgs = localStorage.getItem('hema_img')
+    // }else{
+    //   this.imgs = "../assets/logo.png"
+    // }
+    
     //   window.console.log(this.$route.params.id)
      let res = await getArticleDetail(this.$route.params.id)
+     window.console.log(res)
      if(res.status===200){
          this.mydata = res.data.data
      }
      window.console.log(this.mydata)
+     let res2 = await comment(this.mydata.id)
+     window.console.log(res2)
+    if(res2.status===200){
+      this.comment1 = res2.data.data.map((value)=>{
+          if(value.user.head_img){
+           value.user.head_img = localStorage.getItem('hema_img')+value.user.head_img
+           }
+           return{
+             ...value,
+           }
+         })
+      window.console.log(this.comment1)
+    }
     },
     methods: {
         async  attention(){
