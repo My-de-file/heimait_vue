@@ -16,7 +16,7 @@
       <div class="content" v-if="mydata.type===1" v-html="mydata.content"></div>
       <video v-if="mydata.type===2" v-html="mydata.content" controls></video>
       <div class="opt">
-        <span class="like" @click="Likede">
+        <span class="like" @click="Likede" :class='{atciv1:mydata.has_like}'>
           <van-icon name="good-job-o" />
           {{mydata.like_length}}
         </span>
@@ -41,6 +41,7 @@
       </div>
       <div class="more">更多跟帖</div>
     </div>
+    <bottoncom v-if='mydata.content' :transmission='mydata'></bottoncom>
   </div>
 </template>
 
@@ -49,11 +50,15 @@ import {getArticleDetail} from '@/api/article.js'
 import {attention1} from '@/api/article.js'
 import {Unfriended} from '@/api/article.js'
 import {Like} from '@/api/article.js'
+import bottoncom from '@/components/hm_bottom_com.vue'
 export default {
     data () {
         return {
             mydata:{}
         }
+    },
+    components: {
+      bottoncom
     },
   async mounted () {
     //   window.console.log(this.$route.params.id)
@@ -84,12 +89,17 @@ export default {
           } else{
              this.mydata.like_length--
           }
+          this.mydata.has_like = !this.mydata.has_like
+          this.$toast.success(res.data.message)
         }
     }
 }
 </script>
 
 <style lang='less' scoped>
+.articaldetail{
+  padding-bottom: 50px;
+}
 .header {
   padding: 0px 10px;
   height: 50px;
@@ -160,6 +170,9 @@ export default {
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 15px;
+    &.atciv1{
+      color: #f00;
+    }
   }
   .w {
     color: rgb(84, 163, 5);

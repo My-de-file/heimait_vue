@@ -39,8 +39,8 @@ export const Like = (id)=>{
     })
 }
 
-// export const NoLike = (id)=>{
-//     return axios ({
-//         url:`/post_like/${id}`
-//     })
-// }
+export const collect1 = (id)=>{
+    return axios ({
+        url:`/post_star/${id}`
+    })
+}
