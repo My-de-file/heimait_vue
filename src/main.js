@@ -1,46 +1,21 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-// 引用路由
-import router from '@/router/index.js'
-import { Uploader } from 'vant';
-
-import { Toast } from 'vant';
-
-import { Dialog } from 'vant';
-
-import { Field } from 'vant';
-import { Picker } from 'vant';
-
-import { Icon } from 'vant';
-import { Tab } from 'vant';
-
-import { Tabs } from 'vant';
-import { List } from 'vant';
-import { PullRefresh } from 'vant';
-
-Vue.use(PullRefresh);
-
-Vue.use(List);
-
-Vue.use(Tab)
-
-Vue.use(Tabs);
-
-Vue.use(Icon);
-
-Vue.use(Toast)
-
-Vue.use(Uploader);
-
-Vue.use(Dialog);
-
-Vue.use(Field);
-
-Vue.use(Picker);
-
 // 引进css样式
 import '@/styles/reset.css'
+
+// 引入路由 将其添加到Vue里面
+import router from '@/router/index.js'
+// 添加Vant图标组件
+import { Icon } from 'vant';
+// 添加提示功能模块
+import { Toast } from 'vant';
+// 将提示功能模块挂载到vue实列上面
+Vue.use(Toast);
+
+
+// 挂载到vue的成员里面
+Vue.use(Icon);
 
 Vue.config.productionTip = false
 

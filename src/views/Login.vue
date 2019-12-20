@@ -1,104 +1,69 @@
 <template>
-  <div id="login">
-    <div class="container">
-      <div class="close">
-        <span class="iconfont iconicon-test"></span>
-      </div>
-      <div class="logo">
-        <span class="iconfont iconnew"></span>
-      </div>
-      <div class="inputs">
-        <myinput text='text' placeholder='请输入用户名' v-model="user.username" @input="inp" :zhen='/^1\d{10}$/' tex = '请输入11位手机号'></myinput>
-        <myinput text='password' v-model="user.password"></myinput>
-      </div>
-      <p class="tips">
-        没有账号？
-        <a href="#/register" class>去注册</a>
-      </p>
-      <mybutton @click="onc">登陆按钮</mybutton>
+  <div id="log">
+      <van-icon name="cross" class="scop" />
+    <div id='login'>
+      <van-icon name="warn-o" />
     </div>
+    <!-- 将登录用户名进行动态绑定-->
+    <deinput text='请输入用户名' v-model="user.username"></deinput>
+    <!-- 将登录密码进行动态绑定 -->
+    <deinput type="password" text='请输入密码' v-model="user.password"></deinput>
+    <!-- 添加登录事件 -->
+    <xwbuttom @click="register">登录</xwbuttom>
   </div>
 </template>
 
 <script>
-// 引入按钮路由
-import mybutton from "@/components/mybutton.vue"
-import myinput from "@/components/myinput.vue"
-import {userLogin} from '@/api/users.js'
+// 引入input组件
+import deinput from '@/components/xw_input.vue'
+// 引入按钮组件
+import xwbuttom from '@/components/xw_buttom.vue'
+// 引入登录接口
+import {login} from '@/api/user.js'
 export default {
-  components: {
-    mybutton,myinput
-  },
-  data () {
-    return {
-      user:{
-        username:'',
-        password:'123'
-      }
-    }
-  },
-  methods: {
-    onc(){
-      window.console.log(this.user.password)
-      userLogin(this.user)
-      .then(res=>{
-        // window.console.log(res)
-        if(res.data.message === '登录成功'){
-          // 登录成功实现路由跳转
-          this.$router.push({path : `/personal/${res.data.data.user.id}`})
-          // 将登录成功的token值存到浏览器的本地存储里面
-          localStorage.setItem('token',res.data.data.token)
-          localStorage.setItem('genren_id',res.data.data.user.id)
-        } else {
-          this.$toast.fail('登录失败请重试')
-        }
-      })
-      .catch(err=>{
-        window.console.log(err)
-      })
+    // 将引入的组件进行注册
+    components: {
+        deinput,xwbuttom
     },
-    inp(){
-      window.console.log(this.user.name);
-      
+    data () {
+        return {
+            // 定义一个对象接收用户名密码的值
+            user:{
+                username:'',
+                password:''
+            }
+        }
+    },
+    methods: {
+        // 接收子组件传来的函数事件
+       async register(){
+            window.console.log(this.user.username)
+           // 当触发点击事件就调用登录函数
+           let res = await login(this.user)
+           // 接收后台返回的数据
+        //    window.console.log(res)
+        // 将返回数据作为一个判断是否有登录成功或者失败
+        if(res.data.message==='登录成功'){
+            // 如果登录成功给出提示并且跳转页面
+            this.$toast.success('登录成功')
+        } else{
+            // 如果登录不成功则提示原因让用户知道
+            this.$toast.fail(res.data.message)
+        }
+        }
     }
-  }
 };
 </script>
 
-<style lang='less'>
-.container {
-  padding: 20px;
+<style lang='less' scoped>
+.scop {
+  font-size: 30 * 100vw/360;
+  margin: 20px;
 }
-
-.close {
-  span {
-    font-size: 27 / 360 * 100vw;
-  }
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-
-  span {
-    display: block;
-    font-size: 126 / 360 * 100vw;
-    color: #d81e06;
-  }
-}
-
-.inputs {
-  input {
-    margin-bottom: 20px;
-  }
-}
-
-.tips {
-  text-align: right;
-  margin-bottom: 20px;
-
-  a {
-    color: #3385ff;
-  }
+#login{
+    text-align: center;
+    margin: 60vw*100/360 auto;
+    color: #f00;
+    font-size: 80 * 100vw/360
 }
 </style>

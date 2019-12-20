@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- 显示vue组件视口 -->
     <router-view></router-view>
   </div>
 </template>
